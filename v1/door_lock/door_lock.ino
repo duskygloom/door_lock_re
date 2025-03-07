@@ -63,7 +63,7 @@ bool isDoorOpen() {
     if (wifiMulti.run(2000) == WL_CONNECTED) {
         WiFiClient client;
         HTTPClient http;
-        String url = String("http://" HOSTNAME ".local:") + SERVER_PORT + "/doorstatus";
+        String url = String("http://" HOSTNAME ".local:") + String(SERVER_PORT) + "/doorstatus";
         Serial.println(String("HTTP connection with ") + url);
         if (http.begin(client, url)) {
             int status = http.GET();
@@ -76,7 +76,7 @@ bool isDoorOpen() {
                     return true;
                 }
             } else {
-                Serial.println(String("Invalid response code: ") + status);
+                Serial.println(String("Invalid response code: ") + String(status));
             }
             http.end();
         } else {
@@ -90,15 +90,9 @@ bool isDoorOpen() {
 }
 
 void loop() {
-    if (isDoorOpen()) {
-        // analogWrite(RELAY_PIN, 0);
+    if (isDoorOpen())
         digitalWrite(RELAY_PIN, LOW);
-        Serial.println("LOW");
-    }
-    else {
-        // analogWrite(RELAY_PIN, 1028);
+    else
         digitalWrite(RELAY_PIN, HIGH);
-        Serial.println("HIGH");
-    }
     delay(500);
 }
