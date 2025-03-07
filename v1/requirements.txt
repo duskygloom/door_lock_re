@@ -1,0 +1,4 @@
+Adafruit Fingerprint Sensor Library by Adafruit Version 2.1.3
+ArduinoJson by Benoid Blanchon Version 7.3.1
+LiquidCrystal I2C by Frank de Brabander Version 1.1.2
+IRremote by shirriff Version 4.4.1
